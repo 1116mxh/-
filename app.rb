@@ -29,7 +29,7 @@ class WordGuesserApp < Sinatra::Base
     # NOTE: don't change next line - it's needed by autograder!
     word = params[:word] || WordGuesserGame.get_random_word
     # NOTE: don't change previous line - it's needed by autograder!
-
+    puts word
     @game = WordGuesserGame.new(word)
     redirect '/show'
   end
@@ -39,8 +39,15 @@ class WordGuesserApp < Sinatra::Base
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
     letter = params[:guess].to_s[0]
+    @game.guess(letter)
+    if @game.check_win_or_lose==:win
+      redirect '/win'
+    elsif @game.check_win_or_lose==:lose
+      redirect '/lose'
+    else
+      redirect '/show'
+    end
     ### YOUR CODE HERE ###
-    redirect '/show'
   end
   
   # Everytime a guess is made, we should eventually end up at this route.

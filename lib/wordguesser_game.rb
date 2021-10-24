@@ -4,10 +4,7 @@ class WordGuesserGame
   # to make the tests in spec/wordguesser_game_spec.rb pass.
 
   # Get a word from remote "random word" service
-  attr_accessor :word
-  attr_accessor :guesses
-  attr_accessor :wrong_guesses
-  attr_accessor :word_with_guesses
+  attr_accessor :word,:guesses,:wrong_guesses,:word_with_guesses
   def initialize(word)
     @word = word
     @guesses = ''
